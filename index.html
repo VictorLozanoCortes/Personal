@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Victor Javier Lozano Cortés</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0d;
+      --bg2: #141414;
+      --bg3: #1a1a1a;
+      --border: #2a2a2a;
+      --gold: #c9a84c;
+      --gold-light: #e8c96e;
+      --text: #e8e8e8;
+      --text-muted: #888;
+      --text-dim: #555;
+      --accent: #c9a84c;
+      --radius: 4px;
+      --max: 900px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(13, 13, 13, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-name {
+      font-family: 'Georgia', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name {
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      font-weight: normal;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      color: var(--text-muted);
+      max-width: 540px;
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+      font-style: italic;
+    }
+
+    .hero-location {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-quote {
+      margin-top: 3rem;
+      padding: 1.25rem 2rem;
+      border-left: 2px solid var(--gold);
+      text-align: left;
+      max-width: 500px;
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.75rem 1.75rem;
+      border-radius: var(--radius);
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #0d0d0d;
+      font-weight: bold;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 2rem;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    section + section {
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ABOUT */
+    .about-text {
+      font-size: 1.15rem;
+      color: var(--text);
+      max-width: 680px;
+    }
+
+    .about-text p {
+      margin-bottom: 1rem;
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .about-text strong {
+      color: #fff;
+      font-weight: normal;
+    }
+
+    /* EXPERIENCE */
+    .exp-company {
+      margin-bottom: 3rem;
+    }
+
+    .exp-company:last-child { margin-bottom: 0; }
+
+    .exp-company-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .exp-company-name {
+      font-size: 1rem;
+      font-weight: normal;
+      color: #fff;
+      letter-spacing: 0.05em;
+    }
+
+    .exp-company-tenure {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+    }
+
+    .exp-roles {
+      padding-left: 1.25rem;
+      border-left: 1px solid var(--border);
+    }
+
+    .exp-role {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .exp-role::before {
+      content: '';
+      position: absolute;
+      left: -1.35rem;
+      top: 0.6rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .exp-role:last-child { margin-bottom: 0; }
+
+    .exp-role-title {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .exp-role-meta {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+
+    .exp-role-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .exp-role-desc ul {
+      margin-top: 0.5rem;
+      padding-left: 1.25rem;
+    }
+
+    .exp-role-desc li {
+      margin-bottom: 0.25rem;
+    }
+
+    .exp-role-desc .brands {
+      font-style: italic;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      margin-top: 0.35rem;
+    }
+
+    /* EDUCATION */
+    .edu-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .edu-item {}
+
+    .edu-degree {
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    .edu-school {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.8rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.15rem;
+    }
+
+    .edu-year {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.6rem;
+    }
+
+    .edu-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* CERTS */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .cert-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      transition: border-color 0.2s;
+    }
+
+    .cert-item:hover {
+      border-color: var(--gold);
+    }
+
+    .cert-name {
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .cert-issuer {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.1rem;
+    }
+
+    .cert-date {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    footer a:hover { color: var(--gold-light); }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links { gap: 1.2rem; }
+      section { padding: 4rem 1.25rem; }
+      .hero { padding: 5rem 1.25rem 3rem; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-name">Victor Lozano</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-eyebrow">eCommerce &amp; Marketplace</p>
+    <h1 class="hero-name">Victor Javier<br>Lozano Cortés</h1>
+    <p class="hero-tagline">L'Oréal &mdash; Scaling the most iconic premium beauty brands on marketplace</p>
+    <p class="hero-location">Düsseldorf, Germany</p>
+
+    <blockquote class="hero-quote">
+      "Where brand equity meets digital scale."
+    </blockquote>
+
+    <div class="hero-cta">
+      <a href="#about" class="btn btn-primary">Learn More</a>
+      <a href="https://www.linkedin.com/in/victorlozanocortes" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <div class="about-text">
+      <p>Most brands are getting Amazon wrong.<br>
+      They either give away brand equity, or ignore the channel entirely.</p>
+      <p>That's the problem I solve every day.</p>
+      <p>Leading Amazon for our most iconic portfolio of <strong>L'Oréal Luxury brands</strong>. P&amp;L ownership, #1 category launches in Fragrance and Skincare, across 1P, hybrid, and selective distribution models.</p>
+      <p>Obsessed with one question: <strong>how do brands actually win on marketplace across Europe?</strong></p>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">Experience</p>
+
+    <!-- L'Oréal -->
+    <div class="exp-company">
+      <div class="exp-company-header">
+        <h2 class="exp-company-name">L'Oréal</h2>
+        <span class="exp-company-tenure">Full-time &middot; 4 yrs 9 mos</span>
+      </div>
+      <div class="exp-roles">
+
+        <div class="exp-role">
+          <div class="exp-role-title">Senior Amazon Key Accounts Manager &mdash; Team Lead</div>
+          <div class="exp-role-meta">Jun 2024 &ndash; Present &middot; Düsseldorf, Germany</div>
+          <div class="exp-role-desc">
+            <p>Own Amazon DACH commercial performance for the Luxury Brand portfolio.</p>
+            <ul>
+              <li>Lead cross-functional GTM plans.</li>
+              <li>Delivered full launch lifecycle and #1 category share for multiple brands in the prestige beauty segment.</li>
+              <li>Support in Pan-EU annual negotiations and aligned key business inputs externally and with internal stakeholders.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-role">
+          <div class="exp-role-title">Amazon Key Accounts Manager</div>
+          <div class="exp-role-meta">Dec 2021 &ndash; May 2024 &middot; 2 yrs 6 mos &middot; Greater Düsseldorf Area</div>
+          <div class="exp-role-desc">
+            <p>Dermatological Beauty Division (LDB) &mdash; Germany, Austria &amp; Switzerland.</p>
+            <p>Amazon Vendor and Seller Accounts.</p>
+            <p class="brands">Brands: CeraVe &middot; La Roche-Posay &middot; Vichy</p>
+          </div>
+        </div>
+
+        <div class="exp-role">
+          <div class="exp-role-title">Global eCommerce Team</div>
+          <div class="exp-role-meta">Jul 2021 &ndash; Dec 2021 &middot; 6 mos &middot; Paris, France</div>
+          <div class="exp-role-desc">
+            <p>Supported global marketplace strategy and tool rollout for Amazon and other indirect eCommerce channels.</p>
+            <ul>
+              <li>Contributed to creation and deployment of the Global Amazon Playbook.</li>
+              <li>Worked cross-functionally to drive best practices on selection, content, activation, and fulfillment.</li>
+              <li>Supported internal tooling deployment, process training, and strategic eCommerce planning initiatives.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- OP Agency -->
+    <div class="exp-company">
+      <div class="exp-company-header">
+        <h2 class="exp-company-name">OP Agency LLP</h2>
+      </div>
+      <div class="exp-roles">
+        <div class="exp-role">
+          <div class="exp-role-title">Paid Media Manager</div>
+          <div class="exp-role-meta">Jan 2020 &ndash; May 2021 &middot; 1 yr 5 mos &middot; United Kingdom</div>
+          <div class="exp-role-desc">
+            <p>Built and scaled paid media and SEM strategy for a DTC brand operating across five European markets.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IgnisAltus -->
+    <div class="exp-company">
+      <div class="exp-company-header">
+        <h2 class="exp-company-name">IgnisAltus</h2>
+      </div>
+      <div class="exp-roles">
+        <div class="exp-role">
+          <div class="exp-role-title">Sales Manager</div>
+          <div class="exp-role-meta">Nov 2017 &ndash; Dec 2019 &middot; 2 yrs 2 mos &middot; Mexico</div>
+          <div class="exp-role-desc">
+            <p>Contributed to commercial growth and digital transformation strategy for the consultancy stream.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- United Nations -->
+    <div class="exp-company">
+      <div class="exp-company-header">
+        <h2 class="exp-company-name">United Nations</h2>
+      </div>
+      <div class="exp-roles">
+        <div class="exp-role">
+          <div class="exp-role-title">Delegate, General Assembly &mdash; Internship</div>
+          <div class="exp-role-meta">Jul 2013 &middot; 1 mo &middot; New York City</div>
+          <div class="exp-role-desc">
+            <p>Participated in multilateral sessions on youth, global governance, and immigration.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <p class="section-label">Education</p>
+    <div class="edu-grid">
+
+      <div class="edu-item">
+        <div class="edu-degree">Master of Science &mdash; Digital Marketing &amp; Data Science</div>
+        <div class="edu-school">emlyon business school</div>
+        <div class="edu-year">2020 &ndash; 2021</div>
+        <p class="edu-desc">Cutting-edge tactics and methodologies merging Digital Marketing and Data Science to analyze, model, and execute powerful digital business strategies based on data-driven decisions.</p>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-degree">Creation and Development of Enterprises &mdash; Business, Technology &amp; Innovation</div>
+        <div class="edu-school">Tecnológico de Monterrey</div>
+        <div class="edu-year">2014 &ndash; 2018</div>
+        <p class="edu-desc">Deep understanding of business operations, global perspectives, and leadership insights — building an in-company agile culture embracing digital transformation and breakthrough innovation.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <p class="section-label">Licenses &amp; Certifications</p>
+    <div class="certs-grid">
+
+      <div class="cert-item">
+        <div class="cert-name">Certified Marketer Level 1 (CM1)</div>
+        <div class="cert-issuer">General Assembly</div>
+        <div class="cert-date">Issued Mar 2021</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="cert-name">Facebook Certified Digital Marketing Associate</div>
+        <div class="cert-issuer">Meta</div>
+        <div class="cert-date">Issued Nov 2020</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      Victor Javier Lozano Cortés &mdash; Düsseldorf, Germany &mdash;
+      <a href="https://www.linkedin.com/in/victorlozanocortes" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+</body>
+</html>
