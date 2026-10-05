@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Alemán diario</title>
+  <meta name="theme-color" content="#111418" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Alemán" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/icons/icon-180.png" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="top">
+    <h1 id="titulo">Hoy</h1>
+    <div class="top-r">
+      <span id="sync" class="sync" title="Sincronización"></span>
+      <a href="#ahora" class="fab" id="fab">⚡ Lo necesito ahora</a>
+    </div>
+  </header>
+
+  <main id="app" tabindex="-1"></main>
+
+  <nav class="tabs" aria-label="Secciones">
+    <a href="#hoy" data-tab="hoy"><span class="ico">☀︎</span>Hoy</a>
+    <a href="#misiones" data-tab="misiones"><span class="ico">✎</span>Misiones</a>
+    <a href="#errores" data-tab="errores"><span class="ico">⚑</span>Errores</a>
+    <a href="#ajustes" data-tab="ajustes"><span class="ico">⚙︎</span>Ajustes</a>
+  </nav>
+
+  <script src="/escenarios.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
